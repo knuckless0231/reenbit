@@ -1,0 +1,91 @@
+.mainContainer{
+    min-height: 80vh;
+    width: 60%;
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.goBack{
+    left: 8%;
+    right: 2%;
+    top: 2%;
+    bottom:2% ;
+    position: absolute;
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+.arrow{
+    width: 18px;
+    height: 18px;
+    left: 2%;
+    right: 2%;
+    top: 2%;
+    bottom:2% ;
+    position: absolute;
+}
+
+.characterContainer{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-evenly;
+}
+
+.img{
+    border: 5px solid #F2F2F7;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
+.nameContainer{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 56px;
+    margin-top: 3%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    color: #081F32;
+}
+
+.informations{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #8E8E93;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    margin-top: 5%;
+}
+
+.infoBlock{
+    margin-top: 5%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit,minmax(1fr,1fr));
+    width: 70%;
+}
+
+.lol{
+    padding: 1.5%;
+    margin-left: 2%;
+    border-bottom: 1px solid rgba(33, 33, 33, 0.08);
+}
+
+.gender{
+    color:#6E798C
+}
