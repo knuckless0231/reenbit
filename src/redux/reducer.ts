@@ -43,15 +43,30 @@ export const FetchAllCharacters = (response:GetCharactersResponseType) => {
     return {type:'FETCH-ALL-CHARACTERS',response}as const
 }
 
+export const FetchCurrentUser = (characterID:number) => {
+    return{type:'FETCH-CURRENT-USER',characterID}as const
+}
+
 export const FetchAllCharactersTC = ():RootThunkType => dispatch => {
 //    loader
     api.getCharacters()
         .then(response=>{
-            console.log(response.data)
             dispatch(FetchAllCharacters(response.data))
         })
 //    loader
 }
 
-export type AllActionsType = FetchAllCharactersActionType
+export const FetchCurrentUserTC = (characterID:number):RootThunkType => dispatch => {
+    //    loader
+    api.getCurrentCharacter(characterID)
+        .then(response=>{
+            debugger
+            console.log(response.data)
+        })
+    //    loader
+}
+
+export type AllActionsType = FetchAllCharactersActionType | FetchCurrentUserActionType
 export type FetchAllCharactersActionType = ReturnType<typeof FetchAllCharacters>
+export type FetchCurrentUserActionType = ReturnType<typeof FetchCurrentUser>
+
