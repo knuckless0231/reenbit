@@ -12,7 +12,7 @@ export const api = {
         return instance.get<GetCharactersResponseType>('character')
     },
     getCurrentCharacter(characterID:number) {
-        return instance.get<AxiosResponse<any,any>>(`character${characterID}`)
+        return instance.get<GetCurrentCharacterResponseType>(`character${characterID}`)
     },
 
 
