@@ -7,13 +7,13 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 
 function App() {
     return (
+
         <BrowserRouter>
         <div className="App">
             <Routes>
-                <Route path='/main' element={<MainPage/>}></Route>
-                <Route path='/currentCharacter/:chID' element={<CurrentCharacterPage/>}></Route>
+                <Route path='/main' element={<MainPage/>}/>
+                <Route path='/currentCharacter/:chID' element={<CurrentCharacterPage/>}/>
             </Routes>
-
         </div>
         </BrowserRouter>
 

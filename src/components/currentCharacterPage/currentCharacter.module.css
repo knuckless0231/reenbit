@@ -6,19 +6,10 @@
     justify-content: center;
 }
 
-.goBack{
-    left: 8%;
-    right: 2%;
-    top: 2%;
-    bottom:2% ;
-    position: absolute;
-    font-family: 'Karla';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 21px;
-    color: #000000;
+.arrowBlock{
+    width: 10%;
 }
+
 .arrow{
     width: 18px;
     height: 18px;
@@ -27,6 +18,24 @@
     top: 2%;
     bottom:2% ;
     position: absolute;
+}
+
+.goBack{
+    left: 5%;
+    top: 1.9%;
+    position: fixed;
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+
+@media screen and (max-width: 600px){
+    .goBack{
+        left: 8%;
+    }
 }
 
 .characterContainer{

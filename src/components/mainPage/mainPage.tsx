@@ -1,19 +1,33 @@
 import React, {useEffect} from 'react';
 import rickMortyLogo from "../../common/images/rick_and_morty_logo.png";
 import style from './mainPageStyles.module.css'
-import {FetchAllCharactersTC} from "../../redux/reducer";
+import {FetchAllCharactersTC} from "../../redux/character-reducer";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {Link} from "react-router-dom";
+import Preloader from "../../common/preloader/Preloader";
+import {SetFormValueAC} from "../../redux/search-name-reducer";
+import {useDispatch} from "react-redux";
+import CurrentCharacter from "../currentCharacterPage/currecntCharacter/CurrentCharacter";
 
 const MainPage = () => {
 
-    const dispatch = useAppDispatch()
-    const character = useAppSelector(state => state.reducer.results)
+    const dispatchAC = useDispatch()
+    const dispatchTC = useAppDispatch()
+    const characters = useAppSelector(state => state.characterReducer.results)
+    const isFetching = useAppSelector(state => state.characterReducer.isFetching)
+    const searchValue = useAppSelector(state => state.searchName.formValue)
+
+
+    const onChangeFormValueHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+        dispatchAC(SetFormValueAC(event.currentTarget.value))
+    }
+
+    const filteredCharacters = characters.filter(current=>current.name.toLocaleLowerCase()
+        .includes(searchValue.toLocaleLowerCase()))
 
 
     useEffect(() => {
-        dispatch(FetchAllCharactersTC())
-    }, [dispatch])
+        dispatchTC(FetchAllCharactersTC())
+    }, [dispatchTC])
 
 
     return (
@@ -21,23 +35,23 @@ const MainPage = () => {
 
             <div className={style.firstContainer}>
                 <img className={style.rickMortyLogo} src={rickMortyLogo} alt="rick_and_morty_logo"/>
-                <input className={style.inputWithSearchLogo} type="text" placeholder={'Filter by name...'}/>
+                <form className={style.form}>
+                    <input placeholder={'Filter by name...'}
+                           className={style.inputWithSearchLogo}
+                           onChange={(event) => onChangeFormValueHandler(event)}
+                    />
+                </form>
             </div>
 
             <div className={style.secondContainer}>
-                {character.map((ch) => {
-                    return (
-                        <div className={style.userBlock} key={ch.id}>
-                            {/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! hardcode*/}
-                            <Link to={`currentCharacter/:${2}`}>
-                                <img src={ch.image} alt="" className={style.userImg}/>
-                            </Link>
-                            <div>{ch.name}</div>
-                            <div>{ch.species}</div>
-                        </div>
-                    );
-                })}
+                    {isFetching ? <div className={style.preloaderPage}><Preloader/></div>
+                    : filteredCharacters.map((ch,index) => {
+                                return <CurrentCharacter ch={ch} key={index}/>
+                            })
+                    }
+
             </div>
+
         </div>
     );
 };

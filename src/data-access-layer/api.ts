@@ -1,5 +1,4 @@
 import axios from "axios"
-import { AxiosResponse } from "axios";
 
 const instance = axios.create({
     baseURL: "https://rickandmortyapi.com/api/",
@@ -11,10 +10,6 @@ export const api = {
     getCharacters() {
         return instance.get<GetCharactersResponseType>('character')
     },
-    getCurrentCharacter(characterID:number) {
-        return instance.get<GetCurrentCharacterResponseType>(`character${characterID}`)
-    },
-
 
 }
 
@@ -28,7 +23,8 @@ export type GetCharactersResponseType = {
     },
     results: [
         GetCurrentCharacterResponseType
-    ]
+    ],
+    isFetching:boolean
 }
 export type GetCurrentCharacterResponseType = {
     id: number
