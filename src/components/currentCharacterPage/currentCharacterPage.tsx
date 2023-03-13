@@ -64,7 +64,7 @@ const CurrentCharacterPage = () => {
                             <div>Type</div>
                             <div className={styles.gender}>
                                 {/*тут перевірка на наявність типу персонажу, бо багато де нема*/}
-                                {character.type?character.type:character.gender}
+                                {character.type ? character.type : character.gender}
                             </div>
                         </span>
                     </div>
