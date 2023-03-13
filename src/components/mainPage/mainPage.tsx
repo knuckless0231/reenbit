@@ -5,12 +5,10 @@ import {FetchAllCharactersTC} from "../../redux/character-reducer";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import Preloader from "../../common/preloader/Preloader";
 import {SetFormValueAC} from "../../redux/search-name-reducer";
-import {useDispatch} from "react-redux";
 import CurrentCharacter from "../currentCharacterPage/currecntCharacter/CurrentCharacter";
 
 const MainPage = () => {
 
-    const dispatchAC = useDispatch()
     const dispatchTC = useAppDispatch()
     const characters = useAppSelector(state => state.characterReducer.results)
     const isFetching = useAppSelector(state => state.characterReducer.isFetching)
@@ -18,7 +16,7 @@ const MainPage = () => {
 
 
     const onChangeFormValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatchAC(SetFormValueAC(event.currentTarget.value))
+        dispatchTC(SetFormValueAC(event.currentTarget.value))
     }
 
     const filteredCharacters = characters.filter(current => current.name.toLocaleLowerCase()
