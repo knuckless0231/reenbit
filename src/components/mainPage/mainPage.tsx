@@ -17,11 +17,11 @@ const MainPage = () => {
     const searchValue = useAppSelector(state => state.searchName.formValue)
 
 
-    const onChangeFormValueHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeFormValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         dispatchAC(SetFormValueAC(event.currentTarget.value))
     }
 
-    const filteredCharacters = characters.filter(current=>current.name.toLocaleLowerCase()
+    const filteredCharacters = characters.filter(current => current.name.toLocaleLowerCase()
         .includes(searchValue.toLocaleLowerCase()))
 
 
@@ -44,11 +44,11 @@ const MainPage = () => {
             </div>
 
             <div className={style.secondContainer}>
-                    {isFetching ? <div className={style.preloaderPage}><Preloader/></div>
-                    : filteredCharacters.map((ch,index) => {
-                                return <CurrentCharacter ch={ch} key={index}/>
-                            })
-                    }
+                {isFetching ? <div className={style.preloaderPage}><Preloader/></div>
+                    : filteredCharacters.map((ch, index) => {
+                        return <CurrentCharacter ch={ch} key={index}/>
+                    })
+                }
 
             </div>
 
