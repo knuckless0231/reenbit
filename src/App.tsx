@@ -1,20 +1,19 @@
-import React, {useState,useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import MainPage from "./components/mainPage/mainPage";
 import CurrentCharacterPage from "./components/currentCharacterPage/currentCharacterPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {GoogleLogin, googleLogout, useGoogleLogin} from '@react-oauth/google';
-import axios from 'axios';
+import {GoogleLogin} from '@react-oauth/google';
 
 
 function App() {
 
-    const responseMessage = (response:any) => {
-        console.log(response);
-    };
-    const errorMessage = (error:void|undefined) => {
-        console.log(error);
-    };
+    // const responseMessage = (response:any) => {
+    //     console.log(response);
+    // };
+    // const errorMessage = (error:void|undefined) => {
+    //     console.log(error);
+    // };
 // ---------------------------
 
 
@@ -35,9 +34,19 @@ function App() {
                     <h2>React Google Login</h2>
                     <br />
                     <br />
+                    {/*<GoogleLogin*/}
+                    {/*     onSuccess={responseMessage}*/}
+                    {/*     onError={errorMessage}*/}
+                    {/*/> */}
                     <GoogleLogin
-                         onSuccess={responseMessage}
-                         onError={errorMessage}
+                        onSuccess={credentialResponse => {
+                            console.log(credentialResponse);
+                        }}
+
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+
                     />
                 </div>
 

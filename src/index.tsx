@@ -16,11 +16,11 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
+    <GoogleOAuthProvider clientId="218935189436-fg1p3rvj074uaasrdd53tgn3cb10jld3.apps.googleusercontent.com">
     <Provider store={store}>
-        <GoogleOAuthProvider clientId="218935189436-fg1p3rvj074uaasrdd53tgn3cb10jld3.apps.googleusercontent.com">
             <App/>
-        </ GoogleOAuthProvider>
     </Provider>
+    </ GoogleOAuthProvider>
 )
 ;
 
