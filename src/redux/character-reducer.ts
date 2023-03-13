@@ -31,7 +31,7 @@ export const initialState: GetCharactersResponseType = {
     isFetching: false
 }
 
-export const characterReducer = (state: GetCharactersResponseType = initialState, action: AllActionsType): GetCharactersResponseType => {
+export const characterReducer = (state: GetCharactersResponseType = initialState, action: AllCharacterReducerActionsType): GetCharactersResponseType => {
     switch (action.type) {
         case "FETCH-ALL-CHARACTERS": {
             return {...state, ...action.response}
@@ -63,7 +63,7 @@ export const FetchAllCharactersTC = (): RootThunkType => dispatch => {
 }
 
 
-export type AllActionsType = FetchAllCharactersActionType | FetchFlagActionType
+export type AllCharacterReducerActionsType = FetchAllCharactersActionType | FetchFlagActionType
 export type FetchAllCharactersActionType = ReturnType<typeof FetchAllCharacters>
 export type FetchFlagActionType = ReturnType<typeof FetchFlag>
 

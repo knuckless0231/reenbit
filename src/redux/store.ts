@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {AllActionsType, characterReducer} from "./character-reducer";
+import {AllCharacterReducerActionsType, characterReducer} from "./character-reducer";
 import thunk from 'redux-thunk'
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {searchNameReducer} from "./search-name-reducer";
+import {AllSearchReducerActionsType, searchNameReducer} from "./search-name-reducer";
 
 
 const rootReducer = combineReducers({
@@ -17,9 +17,10 @@ export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
 export const store =  legacy_createStore(rootReducer,applyMiddleware(thunk))
 
 
-export type AppDispatchType = ThunkDispatch<RootReducersType, any, AllActionsType>
+export type RootActionsType = AllSearchReducerActionsType | AllCharacterReducerActionsType
+export type AppDispatchType = ThunkDispatch<RootReducersType, any, RootActionsType>
 export type RootReducersType = ReturnType<typeof rootReducer>
-export type RootThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducersType, unknown, AllActionsType>
+export type RootThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducersType, unknown, RootActionsType>
 export type RootStateType = ReturnType<typeof store.getState>
 
 
