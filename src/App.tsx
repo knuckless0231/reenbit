@@ -6,6 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 
 function App() {
+    console.log(1)
     return (
 
         <BrowserRouter>
