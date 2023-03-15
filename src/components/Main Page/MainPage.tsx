@@ -1,33 +1,47 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import rickMortyLogo from "../../common/images/rick_and_morty_logo.png";
 import style from './mainPageStyles.module.css'
 import {FetchAllCharactersTC} from "../../redux/character-reducer";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import Preloader from "../../common/preloader/Preloader";
 import {SetFormValueAC} from "../../redux/search-name-reducer";
-import {useDispatch} from "react-redux";
-import CurrentCharacter from "../currentCharacterPage/currecntCharacter/CurrentCharacter";
+import CurrentCharacter from "../Current Character Page/Currecnt Character/CurrentCharacter";
+import Pagination from "../Pagination/Pagination";
+import {useParams} from "react-router-dom";
+
 
 const MainPage = () => {
-
-    const dispatchAC = useDispatch()
-    const dispatchTC = useAppDispatch()
+    const dispatch = useAppDispatch()
     const characters = useAppSelector(state => state.characterReducer.results)
     const isFetching = useAppSelector(state => state.characterReducer.isFetching)
     const searchValue = useAppSelector(state => state.searchName.formValue)
+    const summaryCharacters = useAppSelector(state => state.characterReducer.info.count)
+    let param = useParams()
 
+    // -----------------
+    const portionPageSize = 10;
 
-    const onChangeFormValueHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatchAC(SetFormValueAC(event.currentTarget.value))
-    }
+    // -----------------
+
+    const onChangeFormValueHandler = useCallback(function (event: React.ChangeEvent<HTMLInputElement>) {
+        localStorage.setItem('inputValue', event.currentTarget.value);
+        dispatch(SetFormValueAC(event.currentTarget.value))
+    }, [dispatch])
 
     const filteredCharacters = characters.filter(current => current.name.toLocaleLowerCase()
         .includes(searchValue.toLocaleLowerCase()))
 
 
     useEffect(() => {
-        dispatchTC(FetchAllCharactersTC())
-    }, [dispatchTC])
+        const value = localStorage.getItem('inputValue')
+        if (value !== null) {
+            dispatch(SetFormValueAC(value))
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(FetchAllCharactersTC())
+    }, [dispatch])
 
 
     return (
@@ -39,6 +53,8 @@ const MainPage = () => {
                     <input placeholder={'Filter by name...'}
                            className={style.inputWithSearchLogo}
                            onChange={(event) => onChangeFormValueHandler(event)}
+                           value={searchValue}
+                           autoFocus={true}
                     />
                 </form>
             </div>
@@ -51,7 +67,11 @@ const MainPage = () => {
                 }
 
             </div>
+            {/*---------------------------------------------------------------*/}
 
+            <Pagination param={param.pageID!} portionSize={portionPageSize}/>
+
+            {/*---------------------------------------------------------------*/}
         </div>
     );
 };

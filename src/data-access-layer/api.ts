@@ -4,16 +4,16 @@ const instance = axios.create({
     baseURL: "https://rickandmortyapi.com/api/",
 })
 
-
 export const api = {
-
     getCharacters() {
         return instance.get<GetCharactersResponseType>('character')
     },
-
+    getCurrentPage(pageNumber:number) {
+        return instance.get<GetCharactersResponseType>(`character/?page=${pageNumber}`)
+    },
 }
 
-
+//types
 export type GetCharactersResponseType = {
     info: {
         count: number,
