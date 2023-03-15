@@ -1,4 +1,3 @@
-
 const initialState: InitialStateType = {
     formValue:''
 }
@@ -18,9 +17,9 @@ export type AllSearchReducerActionsType = SetFormValueActionType
 export const SetFormValueAC = (value: string) => {
     return {type: "SET-FORM-VALUE", value} as const
 }
-export type SetFormValueActionType = ReturnType<typeof SetFormValueAC>
 
-
+//types
 type InitialStateType = {
         formValue:string
     }
+export type SetFormValueActionType = ReturnType<typeof SetFormValueAC>

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './currentCharacter.module.css'
-import back_arrow from '../../common/images/back_arrow.png'
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../redux/store";
+import Arrow from "../Next-Prev-Arrow/Arrow";
 
 
 const CurrentCharacterPage = () => {
@@ -12,7 +12,6 @@ const CurrentCharacterPage = () => {
     const character = useAppSelector(state => state.characterReducer.results
         .find(ch => ch.id === +chID.chID!))
 
-
     if (!character) {
         return <div> 404 </div>
     } else {
@@ -20,14 +19,10 @@ const CurrentCharacterPage = () => {
             <div className={styles.mainContainer}>
 
                 {/*goBackArrow*/}
-                <div className={styles.arrowBlock}>
-                    <Link to='/main'>
-                        <img className={styles.arrow} src={back_arrow} alt="back"/>
-                        <span className={styles.goBack}>GO BACK</span>
-                    </Link>
-                </div>
+                <Arrow/>
                 {/*goBackArrow*/}
 
+                {/*character container */}
                 <div className={styles.characterContainer}>
                     <div>
                         <img src={character.image} alt="" className={styles.img}/>
@@ -68,6 +63,7 @@ const CurrentCharacterPage = () => {
                             </div>
                         </span>
                     </div>
+                    {/*character container */}
 
                 </div>
             </div>

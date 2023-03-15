@@ -44,6 +44,7 @@ export const characterReducer = (state: GetCharactersResponseType = initialState
     }
 }
 
+//AC's
 export const FetchAllCharacters = (response: GetCharactersResponseType) => {
     return {type: 'FETCH-ALL-CHARACTERS', response} as const
 }
@@ -51,6 +52,7 @@ export const FetchFlag = (isFetching: boolean) => {
     return {type: 'FETCHING-FLAG', isFetching} as const
 }
 
+//thunk
 export const FetchAllCharactersTC = (): RootThunkType => dispatch => {
     dispatch(FetchFlag(true))
     //loader on
@@ -62,7 +64,18 @@ export const FetchAllCharactersTC = (): RootThunkType => dispatch => {
         })
 }
 
+export const FetchCurrentPageTC = (pageNumber:number): RootThunkType => dispatch => {
+    dispatch(FetchFlag(true))
+    //loader on
+    api.getCurrentPage(pageNumber)
+        .then(response => {
+            dispatch(FetchAllCharacters(response.data))
+            dispatch(FetchFlag(false))
+            //loader off
+        })
+}
 
+//types
 export type AllCharacterReducerActionsType = FetchAllCharactersActionType | FetchFlagActionType
 export type FetchAllCharactersActionType = ReturnType<typeof FetchAllCharacters>
 export type FetchFlagActionType = ReturnType<typeof FetchFlag>

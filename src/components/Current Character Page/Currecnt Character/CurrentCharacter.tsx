@@ -4,7 +4,9 @@ import style from './CurrentCharacter.module.css'
 
 
 const CurrentCharacter = (props: any) => {
+
     const {ch} = props
+
     return (
         <div className={style.userBlock} key={ch.id}>
             <Link to={`/currentCharacter/${ch.id}`}>

@@ -1,0 +1,22 @@
+.paginationBlock{
+    /*margin-top: 2%;*/
+    display: flex;
+    justify-content: space-between;
+    /*border: 1px solid black;*/
+    min-width: 50%;
+    max-height: 5%;
+    bottom: 2%;
+    align-items: center;
+}
+.button{
+    max-height: 40px;
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1785b1;
+    border: 3px solid #efe664;
+    color: #efe664;
+    cursor: pointer;
+    margin: 3px;
+}
