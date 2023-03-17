@@ -1,8 +1,6 @@
 .paginationBlock{
-    /*margin-top: 2%;*/
     display: flex;
-    justify-content: space-between;
-    /*border: 1px solid black;*/
+    justify-content: center;
     min-width: 50%;
     max-height: 5%;
     bottom: 2%;

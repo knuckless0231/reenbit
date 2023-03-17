@@ -5,10 +5,13 @@ import back_arrow from "../../common/images/back_arrow.png";
 
 
 const Arrow = () => {
+
+    let pageNumber = localStorage.getItem('pageNumber')
+
     return (
         <div>
             <div className={styles.arrowBlock}>
-                <Link to='/main'>
+                <Link to={`/main/${pageNumber}`}>
                     <img className={styles.arrow} src={back_arrow} alt="back"/>
                     <span className={styles.goBack}>GO BACK</span>
                 </Link>

@@ -1,19 +1,16 @@
-import React, {useCallback, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../../redux/store";
+import React, {useEffect, useState} from 'react';
+import {useAppSelector} from "../../redux/store";
 import {Link} from "react-router-dom";
 import Button from "../Button/Button";
-import {FetchCurrentPageTC} from "../../redux/character-reducer";
 import style from './pagination.module.css'
 
 const Pagination = React.memo((props: PaginationPropsTypes) => {
 
+    //local state for calculate page with pages of characters
     const [portionNumber, setPortionNumber] = useState(1)
-
-    // -------------------------------------------
     const {param, portionSize} = props
     const summaryCharacters = useAppSelector(state => state.characterReducer.info.count)
-    const dispatch = useAppDispatch()
-
+    //mathematical formula for calculation total count of pages
     const totalPagesCount = Math.ceil(summaryCharacters / 20)
     let pagesCount = []
 
@@ -21,33 +18,24 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
         pagesCount.push(i)
     }
 
-    const callback = useCallback(() => {
-        if (param) {
-            dispatch(FetchCurrentPageTC(+param))
-        }
-    }, [dispatch, param])
-    // -------------------------------------------------
+    let blockPortionsCount = Math.ceil(totalPagesCount / portionSize) // total block-portions count
+    let leftPortionValue: number = (portionNumber - 1) * portionSize + 1 //left border of 1-st element
+    let rightPortionNumber: number = portionNumber * portionSize //right border of last element
 
-
-    let blockPortionsCount = Math.ceil(totalPagesCount / portionSize)//кол-во порций-блоков
-    let leftPortionValue: number = (portionNumber - 1) * portionSize + 1
-    let rightPortionNumber: number = portionNumber * portionSize
-
-    console.log(portionNumber)
-
-
-    //---------------------------paginator
-
-// ---------------------------------------------
-
+    // left and right arrows logic
     const prevPaginationHandler = () => {
         if (portionNumber > 1)
             setPortionNumber(portionNumber - 1)
     }
     const nextPaginationHandler = () => {
-        if (portionNumber < 5)
+        if (portionNumber < blockPortionsCount)
             setPortionNumber(portionNumber + 1)
     }
+    // left and right arrows logic
+
+    useEffect(()=>{
+        localStorage.setItem('pageNumber',param)
+    },[param])
 
     return (
         <div className={style.paginationBlock}>
@@ -57,7 +45,7 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
             }).map(pages => {
                 return <span key={pages}>
                         <Link to={`/main/${pages}`}>
-                            <Button name={pages} callback={callback}/>
+                            <Button name={pages} />
                         </Link>
                 </span>
             })
@@ -65,7 +53,6 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
             <button className={style.button} onClick={nextPaginationHandler}>{`next`}</button>
         </div>
     );
-    // ---------------------------------------------
 });
 
 export default Pagination;

@@ -3,8 +3,6 @@
     width: 60%;
     margin-top: 2%;
     flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
 }
 
 .firstContainer {
@@ -52,7 +50,6 @@
     max-width: 100%;
     display: grid;
     justify-content: center;
-
     min-height: 54%;
     grid-template-columns: repeat(auto-fit,minmax(250px,4fr));
 }
