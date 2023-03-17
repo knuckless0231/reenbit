@@ -15,7 +15,7 @@ const CurrentCharacterPage = () => {
         .find(ch => ch.id === +chID.chID!))
 
     if (!character) {
-        return <div> 404 </div>
+        return <div> 404  </div>
     } else {
         return (
             <div className={styles.mainContainer}>

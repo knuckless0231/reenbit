@@ -9,7 +9,7 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
     //local state for calculate page with pages of characters
     const [portionNumber, setPortionNumber] = useState(1)
     const {param, portionSize} = props
-    const summaryCharacters = useAppSelector(state => state.characterReducer.info.count)
+    const summaryCharacters = useAppSelector<number>(state => state.characterReducer.info.count)
     //mathematical formula for calculation total count of pages
     const totalPagesCount = Math.ceil(summaryCharacters / 20)
     let pagesCount = []

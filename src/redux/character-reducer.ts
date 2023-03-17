@@ -56,7 +56,6 @@ export const FetchFlag = (isFetching: boolean) => {
 export const FetchCurrentPageTC = (pageNumber:number): RootThunkType => dispatch => {
     dispatch(FetchFlag(true))
     //loader on
-    // console.log(pageNumber)
     api.getCurrentPage(pageNumber)
         .then(response => {
             dispatch(FetchAllCharacters(response.data))

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import MainPage from "./components/Main Page/MainPage";
-import CurrentCharacterPage from "./components/Current Character Page/currentCharacterPage";
+import MainPage from "./components/MainPage/MainPage";
+import CurrentCharacterPage from "./components/CurrentCharacterPage/currentCharacterPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 

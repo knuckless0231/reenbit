@@ -2,6 +2,12 @@
   "name": "reenbit",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios)/)"
+    ]
+  },
   "homepage": "https://knuckless0231.github.io/reenbit",
   "dependencies": {
     "@react-oauth/google": "^0.8.0",

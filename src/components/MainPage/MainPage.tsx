@@ -5,17 +5,18 @@ import {FetchCurrentPageTC} from "../../redux/character-reducer";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import Preloader from "../../common/preloader/Preloader";
 import {SetFormValueAC} from "../../redux/search-name-reducer";
-import CurrentCharacter from "../Current Character Page/Currecnt Character/CurrentCharacter";
+import CurrentCharacter from "../CurrentCharacterPage/CurrecntCharacter/CurrentCharacter";
 import Pagination from "../Pagination/Pagination";
 import {useParams} from "react-router-dom";
+import {GetCurrentCharacterResponseType} from "../../data-access-layer/api";
 
 
 const MainPage = () => {
 
     const dispatch = useAppDispatch()
-    const characters = useAppSelector(state => state.characterReducer.results)
-    const isFetching = useAppSelector(state => state.characterReducer.isFetching)
-    const searchValue = useAppSelector(state => state.searchName.formValue)
+    const characters = useAppSelector<GetCurrentCharacterResponseType[]>(state => state.characterReducer.results)
+    const isFetching = useAppSelector<boolean>(state => state.characterReducer.isFetching)
+    const searchValue = useAppSelector<string>(state => state.searchName.formValue)
     let param = useParams()
     const portionPageSize = 10;
 
