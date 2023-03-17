@@ -1,4 +1,4 @@
-import {searchNameReducer, SetFormValueAC} from "../../redux/search-name-reducer";
+import {searchNameReducer, SetFormValueAC} from "../redux/search-name-reducer";
 
 test('correct value should be set into input',()=>{
     const startState = {

@@ -1,5 +1,5 @@
-import {characterReducer, FetchAllCharacters, FetchFlag} from "../../redux/character-reducer";
-import {GetCharactersResponseType} from "../../data-access-layer/api";
+import {characterReducer, FetchAllCharacters, FetchFlag} from "../redux/character-reducer";
+import {GetCharactersResponseType} from "../data-access-layer/api";
 
 let startState:GetCharactersResponseType
 beforeEach(()=>{
