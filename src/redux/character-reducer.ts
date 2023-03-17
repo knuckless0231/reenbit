@@ -53,17 +53,6 @@ export const FetchFlag = (isFetching: boolean) => {
 }
 
 //thunk
-export const FetchAllCharactersTC = (): RootThunkType => dispatch => {
-    dispatch(FetchFlag(true))
-    //loader on
-    api.getCharacters()
-        .then(response => {
-            dispatch(FetchAllCharacters(response.data))
-            dispatch(FetchFlag(false))
-            //loader off
-        })
-}
-
 export const FetchCurrentPageTC = (pageNumber:number): RootThunkType => dispatch => {
     dispatch(FetchFlag(true))
     //loader on

@@ -11,7 +11,6 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/*" element={<MainPage />}/>
-                    {/*<Route path='/main' element={<MainPage/>}/>*/}
                     <Route path='/main/:pageID' element={<MainPage/>}/>
                     <Route path='/currentCharacter/:chID' element={<CurrentCharacterPage/>}/>
                 </Routes>

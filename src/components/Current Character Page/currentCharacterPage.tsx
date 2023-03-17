@@ -2,13 +2,15 @@ import React from 'react';
 import styles from './currentCharacter.module.css'
 import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../redux/store";
-import Arrow from "../Next-Prev-Arrow/Arrow";
+import Arrow from "../Arrow/Arrow";
 
 
 const CurrentCharacterPage = () => {
 
+    //characterID
     const chID = useParams<{ chID: string }>()
 
+    //getting current character
     const character = useAppSelector(state => state.characterReducer.results
         .find(ch => ch.id === +chID.chID!))
 
@@ -20,10 +22,10 @@ const CurrentCharacterPage = () => {
 
                 {/*goBackArrow*/}
                 <Arrow/>
-                {/*goBackArrow*/}
 
                 {/*character container */}
                 <div className={styles.characterContainer}>
+
                     <div>
                         <img src={character.image} alt="" className={styles.img}/>
                     </div>
@@ -35,9 +37,7 @@ const CurrentCharacterPage = () => {
                     <div className={styles.informations}>
                         Informations
                     </div>
-                    <div>
 
-                    </div>
                     <div className={styles.infoBlock}>
                         <span className={styles.lol}>
                             <div>Gender</div>

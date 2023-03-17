@@ -10,13 +10,13 @@ const rootReducer = combineReducers({
     characterReducer: characterReducer,
     searchName: searchNameReducer
 })
+export const store =  legacy_createStore(rootReducer,applyMiddleware(thunk))
 
+//typed hooks
 export const useAppDispatch = () => useDispatch<AppDispatchType>()
 export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
 
-export const store =  legacy_createStore(rootReducer,applyMiddleware(thunk))
-
-
+//types
 export type RootActionsType = AllSearchReducerActionsType | AllCharacterReducerActionsType
 export type AppDispatchType = ThunkDispatch<RootReducersType, any, RootActionsType>
 export type RootReducersType = ReturnType<typeof rootReducer>

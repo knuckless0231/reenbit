@@ -1,21 +1,28 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import style from './CurrentCharacter.module.css'
+import {GetCurrentCharacterResponseType} from "../../../data-access-layer/api";
 
 
-const CurrentCharacter = (props: any) => {
+const CurrentCharacter = (props: CurrentCharacterPropsTypes) => {
 
-    const {ch} = props
+    // current character
+    const {character} = props
 
     return (
-        <div className={style.userBlock} key={ch.id}>
-            <Link to={`/currentCharacter/${ch.id}`}>
-                <img src={ch.image} alt="" className={style.userImg}/>
+        <div className={style.userBlock} key={character.id}>
+            <Link to={`/currentCharacter/${character.id}`}>
+                <img src={character.image} alt="" className={style.userImg}/>
             </Link>
-            <div>{ch.name}</div>
-            <div>{ch.species}</div>
+            <div>{character.name}</div>
+            <div>{character.species}</div>
         </div>
     )
 };
 
 export default CurrentCharacter;
+
+//types
+type CurrentCharacterPropsTypes = {
+    character:GetCurrentCharacterResponseType
+}

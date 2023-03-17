@@ -7,9 +7,6 @@ import back_arrow from "../../common/images/back_arrow.png";
 const Arrow = () => {
 
     let pageNumber = localStorage.getItem('pageNumber')
-    console.log(pageNumber!.toString())
-    //тут всё правильно
-
 
     return (
         <div>

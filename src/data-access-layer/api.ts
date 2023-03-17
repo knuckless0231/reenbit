@@ -5,9 +5,6 @@ const instance = axios.create({
 })
 
 export const api = {
-    getCharacters() {
-        return instance.get<GetCharactersResponseType>('character')
-    },
     getCurrentPage(pageNumber:number) {
         return instance.get<GetCharactersResponseType>(`character/?page=${pageNumber}`)
     },

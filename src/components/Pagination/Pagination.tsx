@@ -6,11 +6,11 @@ import style from './pagination.module.css'
 
 const Pagination = React.memo((props: PaginationPropsTypes) => {
 
+    //local state for calculate page with pages of characters
     const [portionNumber, setPortionNumber] = useState(1)
-
     const {param, portionSize} = props
     const summaryCharacters = useAppSelector(state => state.characterReducer.info.count)
-
+    //mathematical formula for calculation total count of pages
     const totalPagesCount = Math.ceil(summaryCharacters / 20)
     let pagesCount = []
 
@@ -18,10 +18,11 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
         pagesCount.push(i)
     }
 
-    let blockPortionsCount = Math.ceil(totalPagesCount / portionSize)//кол-во порций-блоков
-    let leftPortionValue: number = (portionNumber - 1) * portionSize + 1
-    let rightPortionNumber: number = portionNumber * portionSize
+    let blockPortionsCount = Math.ceil(totalPagesCount / portionSize) // total block-portions count
+    let leftPortionValue: number = (portionNumber - 1) * portionSize + 1 //left border of 1-st element
+    let rightPortionNumber: number = portionNumber * portionSize //right border of last element
 
+    // left and right arrows logic
     const prevPaginationHandler = () => {
         if (portionNumber > 1)
             setPortionNumber(portionNumber - 1)
@@ -30,6 +31,7 @@ const Pagination = React.memo((props: PaginationPropsTypes) => {
         if (portionNumber < blockPortionsCount)
             setPortionNumber(portionNumber + 1)
     }
+    // left and right arrows logic
 
     useEffect(()=>{
         localStorage.setItem('pageNumber',param)

@@ -12,7 +12,6 @@ import {useParams} from "react-router-dom";
 
 const MainPage = () => {
 
-
     const dispatch = useAppDispatch()
     const characters = useAppSelector(state => state.characterReducer.results)
     const isFetching = useAppSelector(state => state.characterReducer.isFetching)
@@ -20,37 +19,34 @@ const MainPage = () => {
     let param = useParams()
     const portionPageSize = 10;
 
-
     //form values
-
     const onChangeFormValueHandler = useCallback(function (event: React.ChangeEvent<HTMLInputElement>) {
         localStorage.setItem('inputValue', event.currentTarget.value);
         dispatch(SetFormValueAC(event.currentTarget.value))
     }, [dispatch])
 
-    //form values
-
+    //filter values by search name
     const filteredCharacters = characters.filter(current => current.name.toLocaleLowerCase()
         .includes(searchValue.toLocaleLowerCase()))
 
-
+    //get item from Local Storage and dispatch to Redux
     useEffect(() => {
         const value = localStorage.getItem('inputValue')
-        console.log(value)
         if (value !== null) {
             dispatch(SetFormValueAC(value))
         }
     }, [dispatch])
 
-
+    //load users from server
     useEffect(() => {
         dispatch(FetchCurrentPageTC(+param.pageID!))
-    }, [dispatch,param.pageID])
+    }, [dispatch, param.pageID])
 
 
     return (
         <div className={style.mainContainer}>
 
+            {/*logo, search container*/}
             <div className={style.firstContainer}>
                 <img className={style.rickMortyLogo} src={rickMortyLogo} alt="rick_and_morty_logo"/>
                 <form className={style.form}>
@@ -63,15 +59,19 @@ const MainPage = () => {
                 </form>
             </div>
 
+            {/*characters container*/}
             <div className={style.secondContainer}>
                 {isFetching ? <div className={style.preloaderPage}><Preloader/></div>
                     : filteredCharacters.map((ch, index) => {
-                        return <CurrentCharacter ch={ch} key={index}/>
+                        return <CurrentCharacter character={ch} key={index}/>
                     })
                 }
 
             </div>
-            <Pagination param={param.pageID!} portionSize={portionPageSize}/>
+
+            {/*pagination*/}
+            {!isFetching && <Pagination param={param.pageID!} portionSize={portionPageSize}/>}
+
         </div>
     );
 };
